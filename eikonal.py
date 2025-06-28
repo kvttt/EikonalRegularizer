@@ -67,6 +67,8 @@ class EikonalRegularizer(nn.Module):
             raise ValueError(
                 f"Expect mask to have the same shape as sdf, got mask shape {mask.shape} and sdf shape {sdf.shape}"
             )
+        if not mask.device == sdf.device:
+            raise ValueError(f"Expect mask and sdf to be on the same device, got mask on {mask.device} and sdf on {sdf.device}")
 
         masking = mask.bool().float()
 
